@@ -10,7 +10,12 @@ module MetOnTheMiddle
       @tracker = Tracker.new(MetOnTheMiddle.configuration)
       @tracker.start!
 
-      register_subscriptions
+      ##
+      # TODO trovare sistema migliore per individuare se siamo lanciati tramite
+      # rake oppure tramite server
+      unless File.basename($0) == 'rake'
+        register_subscriptions
+      end
 
     end
 

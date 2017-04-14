@@ -14,11 +14,29 @@ gem 'met_on_the_middle'
 And then execute:
 
     $ bundle
+    
+Installare l'inizializzatore con le varie opzioni dell'applicativo
+
+    $ bundle exec rails g met_on_the_middle:install
+      
 
 
 ## Usage
 
-TODO: Write usage instructions here
+###Per implementare nuove metriche:
+creare una nuova classe derivata da
+
+    MetOnTheMiddle::Readers::Base
+    
+come quelle già presenti, leggere direttamente la documentazione 
+su tale classe
+
+Nel caso non esistesse un ActiveSupport::Notifications che fa al caso vostro
+registratelo come definito nella 
+[documentazione](http://guides.rubyonrails.org/active_support_instrumentation.html)
+ e registrazione quindi la vostra classe per quell'evento
+ 
+Ricordardarsi di aggiungere la classe corretta nell'array dei readers
 
 ## Development
 

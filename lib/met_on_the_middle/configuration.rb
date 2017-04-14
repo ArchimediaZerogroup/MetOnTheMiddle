@@ -24,7 +24,7 @@ module MetOnTheMiddle
       @tracker = nil
       @logger = Rails.logger
       @flush_interval = 10
-      self.readers = [:RequestCount, :TotalTime]
+      self.readers = [:RequestCount, :TotalTime, :DatabaseTime]
     end
 
 
@@ -39,7 +39,13 @@ module MetOnTheMiddle
 
 
     def readers=(array)
-      @_readers = array.collect {|c| Readers.const_get(c) }
+      @_readers = array.collect {|c|
+        if c.is_a?(Symbol)
+          Readers.const_get(c)
+        else
+          c
+        end
+      }
     end
 
     def readers

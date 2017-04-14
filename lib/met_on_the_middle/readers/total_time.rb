@@ -9,7 +9,7 @@ module MetOnTheMiddle::Readers
       'met_on_the_middleware.total_time'
     end
 
-    def parse(event)
+    def parse(event,request:nil)
       event.duration
     end
 

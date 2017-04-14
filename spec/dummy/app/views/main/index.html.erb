@@ -12,3 +12,7 @@ STAMPIAMO UN ELENCO di RECORD
     </div>
 
 <% end %>
+
+
+Seconda query con per cerare il primo
+<%= Person.where(Person.arel_table[:name].matches('%marino%')).first %>

@@ -13,8 +13,9 @@ MetOnTheMiddle.configure do |cfg|
   # cfg.flush_interval = 60
 
   # Elenco Classi da Utilizzare per estrapolare le informazioni
+  # Può essere anche una classe oltre ad un symbol
   #
-  #cfg.readers = [:RequestCount, :TotalTime]
+  #cfg.readers = [:RequestCount, :TotalTime, :DatabaseTime]
 
 
 end

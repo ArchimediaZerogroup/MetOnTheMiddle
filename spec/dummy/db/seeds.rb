@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+if Person.count==0
+  Person.create(
+      [
+          {name: 'Marino', surname: 'Bonetti'},
+          {name: 'Marino3', surname: 'Bonetti2'},
+          {name: 'Marino4', surname: 'Bonetti3'},
+          {name: 'Marino5', surname: 'Bonetti4'}
+      ]
+  )
+end

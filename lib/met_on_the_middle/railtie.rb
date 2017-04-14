@@ -11,10 +11,15 @@ module MetOnTheMiddle
     end
 
 
+=begin
     initializer "met_on_the_middle.define_notification_subscription" do
+
+      variabile_mia = '123123'
 
       ActiveSupport::Notifications.subscribe MetOnTheMiddle.configuration.notifications_event_matcher do |*args|
         event = ActiveSupport::Notifications::Event.new *args
+
+        raise variabile_mia.inspect
 
         event.name # => "process_action.action_controller"
         event.duration # => 10 (in milliseconds)
@@ -25,6 +30,7 @@ module MetOnTheMiddle
       end
 
     end
+=end
 
 
   end

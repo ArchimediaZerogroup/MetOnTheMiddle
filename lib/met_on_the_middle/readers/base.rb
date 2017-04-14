@@ -7,7 +7,7 @@ module MetOnTheMiddle::Readers
     include Singleton
     extend SingleForwardable
 
-    def_delegators :instance, :parse, :to_key_value
+    def_delegators :instance, :parse, :to_key_value, :register_subscription
 
     attr_accessor :key
 
@@ -15,14 +15,35 @@ module MetOnTheMiddle::Readers
       @key = key
     end
 
-    #
-    # metodo da utilizzare per parsare i dati
-    def parse(raw)
-      raw
+    ##
+    # Regular expression to match notifications
+    def match_subscription
+      ''
     end
 
-    def to_key_value(raw)
-      return @key, parse(raw)
+    #
+    # metodo da utilizzare per parsare i dati
+    def parse(event)
+      event.name
+    end
+
+    def to_key_value(event)
+      return @key, parse(event)
+    end
+
+
+    def register_subscription(tracker)
+      ActiveSupport::Notifications.subscribe match_subscription do |*args|
+        event = ActiveSupport::Notifications::Event.new *args
+
+        tracker.add *self.to_key_value(event)
+        # event.name # => "process_action.action_controller"
+        # event.duration # => 10 (in milliseconds)
+        # event.payload # => {:extra=>information}
+
+        # Rails.logger.info "#{event.inspect} Received!"
+        # Rails.logger.info "----------"
+      end
     end
 
   end

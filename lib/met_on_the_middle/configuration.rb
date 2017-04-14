@@ -24,6 +24,7 @@ module MetOnTheMiddle
       @tracker = nil
       @logger = Rails.logger
       @flush_interval = 10
+      self.readers = [:RequestCount, :TotalTime]
     end
 
 
@@ -34,6 +35,15 @@ module MetOnTheMiddle
           event_mode: :event_mode
       }
 
+    end
+
+
+    def readers=(array)
+      @_readers = array.collect {|c| Readers.const_get(c) }
+    end
+
+    def readers
+      @_readers
     end
 
   end

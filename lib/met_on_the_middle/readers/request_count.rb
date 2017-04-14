@@ -5,5 +5,13 @@ module MetOnTheMiddle::Readers
       super(:request_count)
     end
 
+    def match_subscription
+      'met_on_the_middleware.total_time'
+    end
+
+    def parse(event)
+      1
+    end
+
   end
 end

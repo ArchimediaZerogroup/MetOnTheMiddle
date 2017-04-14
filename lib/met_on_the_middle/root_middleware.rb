@@ -10,6 +10,8 @@ module MetOnTheMiddle
       @tracker = Tracker.new(MetOnTheMiddle.configuration)
       @tracker.start!
 
+      register_subscriptions
+
     end
 
     ##
@@ -19,19 +21,14 @@ module MetOnTheMiddle
     end
 
     def _call(env)
-
-      response, duration = process_request(env)
-
-      #qua non dovremmo far altro che spedire a zabbix i dati
-
-      # Rails.logger.debug {status.inspect}
-      # Rails.logger.debug {headers.inspect}
-      # Rails.logger.debug {response.inspect}
+      response = nil
 
       @tracker.request_block do
-        @tracker.add *Readers::TotalTime.to_key_value(duration)
-        @tracker.add *Readers::RequestCount.to_key_value(1)
-        @tracker.add :chiave, 10
+
+        ActiveSupport::Notifications.instrument "met_on_the_middleware.total_time" do
+          response = @app.call(env)
+        end
+
       end
 
 
@@ -39,12 +36,12 @@ module MetOnTheMiddle
     end
 
 
-    def process_request(env)
-      time = Time.now
-      response = @app.call(env)
-      duration = (Time.now - time) * 1000.0
-      [response, duration]
+    def register_subscriptions
+      MetOnTheMiddle.configuration.readers.each do |r|
+        r.register_subscription(@tracker)
+      end
     end
+
 
   end
 end

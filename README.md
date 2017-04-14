@@ -15,9 +15,6 @@ And then execute:
 
     $ bundle
 
-Aggiungi in application.rb oppure nell'enviroment desiderato
-    
-    config.middleware.insert_before(Rack::Sendfile,'MetOnTheMiddle::RootMiddleware')
 
 ## Usage
 

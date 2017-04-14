@@ -10,7 +10,7 @@ module MetOnTheMiddle::Readers
     end
 
     def parse(event,request:nil)
-      event.duration
+      event.duration.round(2)
     end
 
   end

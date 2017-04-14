@@ -26,13 +26,11 @@ MetOnTheMiddle.configure do |cfg|
   ##
   # Configurazione per Zabbix
   #
-  # cfg.sender =  MetOnTheMiddle::Senders::Zabbix.new(
-  #   server_host: '127.0.0.1',
-  #   port: 10051,
-  #   identify_host:'nome.mio.host'
-  # )
-
-
+  cfg.sender = MetOnTheMiddle::Senders::Zabbix.new(
+      server_host: 'zabbixapp.zerogroup.it',
+      port: 10051,
+      identify_host: 'limos.archimedianet.it'
+  )
 
 
 end

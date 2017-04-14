@@ -29,7 +29,7 @@ module MetOnTheMiddle
       @event_mode= :sleep
       @tracker = nil
       @logger = Rails.logger
-      @sender = Senders::FileSystem(Rails.root.join('log/met_on_the_middle.log'))
+      @sender = Senders::FileSystem.new(Rails.root.join('log/met_on_the_middle.log'))
       @flush_interval = 10
       self.readers = [:RequestCount, :TotalTime, :DatabaseTime]
     end

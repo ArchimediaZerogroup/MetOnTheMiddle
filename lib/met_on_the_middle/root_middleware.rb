@@ -1,8 +1,15 @@
 module MetOnTheMiddle
   class RootMiddleware
 
+
+    attr_reader :tracker
+
     def initialize(app)
       @app = app
+
+      @tracker = Tracker.new(MetOnTheMiddle.configuration)
+      @tracker.start!
+
     end
 
     ##
@@ -33,9 +40,11 @@ module MetOnTheMiddle
 
       #qua non dovremmo far altro che spedire a zabbix i dati
 
-      Rails.logger.debug {status.inspect}
-      Rails.logger.debug {headers.inspect}
-      Rails.logger.debug {response.inspect}
+      # Rails.logger.debug {status.inspect}
+      # Rails.logger.debug {headers.inspect}
+      # Rails.logger.debug {response.inspect}
+
+      @tracker.add :chiave, 10
 
 
       [status, headers, response]

@@ -20,8 +20,8 @@ module MetOnTheMiddle
         event.duration # => 10 (in milliseconds)
         event.payload # => {:extra=>information}
 
-        Rails.logger.info "#{event.inspect} Received!"
-        Rails.logger.info "----------"
+        # Rails.logger.info "#{event.inspect} Received!"
+        # Rails.logger.info "----------"
       end
 
     end

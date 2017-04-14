@@ -2,7 +2,7 @@ module MetOnTheMiddle
   class Tracker
     extend Forwardable
 
-    def_delegators :collector, :add
+    def_delegators :actual_request, :add
 
     attr_reader :config
 
@@ -28,28 +28,31 @@ module MetOnTheMiddle
     end
 
     # primary collector object used by this tracker
-     def collector
-       @collector ||= Collector.new
-     end
+    def collector
+      @collector ||= Collector.new
+    end
 
 
     # send all current data to Metrics
     def flush
-      logger.debug{ "flushing pid #{@pid} (#{Time.now}).."}
+      logger.debug {"flushing pid #{@pid} (#{Time.now}).."}
       start = Time.now
       # thread safety is handled internally for stores
       # queue = build_flush_queue(collector)
       # queue.submit unless queue.empty?
-      logger.debug{ "logica di invio dati - #{collector.inspect}"}
+      unless collector.empty?
+        logger.debug {"logica di invio dati - #{collector.inspect}"}
+        collector.clear
+      end
 
       logger.info {"flushed pid #{@pid} in #{(Time.now - start)*1000.to_f}ms"}
     rescue Exception => error
-      logger.error{ "submission failed permanently: #{error}"}
+      logger.error {"submission failed permanently: #{error}"}
     end
 
     # given current state, should the tracker start a reporter thread?
     def should_start?
-     true
+      true
     end
 
     # start worker thread, one per process.
@@ -58,6 +61,18 @@ module MetOnTheMiddle
     # thread will not pass with the fork
     def start!
       check_worker if should_start?
+    end
+
+    def actual_request
+      @_actual_request
+    end
+
+    ##
+    # Si occupa di ragruppare per richiesta
+    def request_block
+      @_actual_request = Request.new
+      yield
+      collector.add @_actual_request
     end
 
     private

@@ -2,11 +2,11 @@ module MetOnTheMiddle
   class Collector < Hash
 
     def initialize
-      super(0)
+      super(Request.new)
     end
 
-    def add(key,value)
-      self[key]=value
+    def add(request)
+      self[request.time]=request
     end
 
   end

@@ -23,7 +23,7 @@ module MetOnTheMiddle
       @event_mode= :sleep
       @tracker = nil
       @logger = Rails.logger
-      @flush_interval = 60
+      @flush_interval = 10
     end
 
 

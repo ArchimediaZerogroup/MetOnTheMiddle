@@ -29,7 +29,7 @@ module MetOnTheMiddle
 
     # primary collector object used by this tracker
     def collector
-      @collector ||= Collector.new
+      @collector ||= Collector.new(@config.sender)
     end
 
 
@@ -42,6 +42,9 @@ module MetOnTheMiddle
       # queue.submit unless queue.empty?
       unless collector.empty?
         logger.debug {"logica di invio dati - #{collector.inspect}"}
+
+        collector.submit
+
         collector.clear
       end
 

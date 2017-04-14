@@ -13,6 +13,12 @@ module MetOnTheMiddle
     # Tempo in secondi ogni quanto eseguire un flush dei dati
     attr_accessor :flush_interval
 
+    ##
+    # Definisce la classe da utilizzare per spedire/registrazione le informazioni
+    # Default a MetOnTheMiddle::Senders::FileSystem configurato per scrivere
+    # in un file dentro alla cartella log dell'applicativo Rails
+    attr_accessor :sender
+
     attr_accessor :logger
 
 
@@ -23,6 +29,7 @@ module MetOnTheMiddle
       @event_mode= :sleep
       @tracker = nil
       @logger = Rails.logger
+      @sender = Senders::FileSystem(Rails.root.join('log/met_on_the_middle.log'))
       @flush_interval = 10
       self.readers = [:RequestCount, :TotalTime, :DatabaseTime]
     end

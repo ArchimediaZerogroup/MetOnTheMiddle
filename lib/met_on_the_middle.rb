@@ -1,3 +1,5 @@
+Dir[File.expand_path('../met_on_the_middle/readers/*.rb', __FILE__)].each {|file| require file}
+Dir[File.expand_path('../met_on_the_middle/senders/*.rb', __FILE__)].each {|file| require file}
 require 'met_on_the_middle/version'
 require 'met_on_the_middle/root_middleware'
 require 'met_on_the_middle/configuration'
@@ -5,7 +7,9 @@ require 'met_on_the_middle/request'
 require 'met_on_the_middle/collector'
 require 'met_on_the_middle/tracker'
 require 'met_on_the_middle/worker'
-Dir[File.expand_path('../met_on_the_middle/readers/*.rb', __FILE__)].each {|file| require file}
+
+
+
 require 'met_on_the_middle/railtie' if defined?(Rails)
 module MetOnTheMiddle
   # Your code goes here...

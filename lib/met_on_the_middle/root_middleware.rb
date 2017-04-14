@@ -30,7 +30,7 @@ module MetOnTheMiddle
 
       @tracker.request_block do
 
-        ActiveSupport::Notifications.instrument "met_on_the_middleware.total_time" do
+        ActiveSupport::Notifications.instrument "met_on_the_middle.total_time" do
           response = @app.call(env)
         end
 

@@ -17,5 +17,11 @@ MetOnTheMiddle.configure do |cfg|
   #
   #cfg.readers = [:RequestCount, :TotalTime, :DatabaseTime]
 
+  ##
+  # Definisce la classe da utilizzare per spedire/registrazione le informazioni
+  # Default a MetOnTheMiddle::Senders::FileSystem configurato per scrivere
+  # in un file dentro alla cartella log dell'applicativo Rails
+  #cfg.sender =  Senders::FileSystem(Rails.root.join('log/met_on_the_middle.log'))
+
 
 end

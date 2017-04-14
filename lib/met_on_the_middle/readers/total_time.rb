@@ -6,7 +6,7 @@ module MetOnTheMiddle::Readers
     end
 
     def match_subscription
-      'met_on_the_middleware.total_time'
+      'met_on_the_middle.total_time'
     end
 
     def parse(event,request:nil)

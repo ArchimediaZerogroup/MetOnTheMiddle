@@ -10,7 +10,7 @@ MetOnTheMiddle.configure do |cfg|
   #cfg.logger = Rails.logger
 
   # Tempo in secondi ogni quanto eseguire un flush dei dati
-  # cfg.flush_interval = 60
+  cfg.flush_interval = 10
 
   # Elenco Classi da Utilizzare per estrapolare le informazioni
   # Può essere anche una classe oltre ad un symbol

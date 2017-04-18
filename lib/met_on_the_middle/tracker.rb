@@ -45,9 +45,7 @@ module MetOnTheMiddle
 
         collector.submit
 
-        collector.clear
-
-        logger.debug { "GarbageCollector - #{GC.stat.inspect}" }
+        logger.debug { "#### #{collector.size} - GarbageCollector - #{GC.stat.inspect}" }
 
       end
 

@@ -46,6 +46,9 @@ module MetOnTheMiddle
         collector.submit
 
         collector.clear
+
+        logger.debug { "GarbageCollector - #{GC.stat.inspect}" }
+
       end
 
       logger.info {"flushed pid #{@pid} in #{(Time.now - start)*1000.to_f}ms"}

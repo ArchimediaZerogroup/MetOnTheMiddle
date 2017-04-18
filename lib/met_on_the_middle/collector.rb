@@ -14,7 +14,8 @@ module MetOnTheMiddle
 
 
     def submit
-      each do |k,v|
+      copy = Marshal.load( Marshal.dump(self) )
+      copy.each do |k,v|
         self.sender.write(v)
       end
     end

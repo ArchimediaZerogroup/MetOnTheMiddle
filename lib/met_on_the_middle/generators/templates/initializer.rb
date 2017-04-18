@@ -15,7 +15,7 @@ MetOnTheMiddle.configure do |cfg|
   # Elenco Classi da Utilizzare per estrapolare le informazioni
   # Può essere anche una classe oltre ad un symbol
   #
-  #cfg.readers = [:RequestCount, :TotalTime, :DatabaseTime]
+  #cfg.readers = [:RequestCount, :TotalTime, :DatabaseTime, :ViewTime]
 
   ##
   # Definisce la classe da utilizzare per spedire/registrazione le informazioni

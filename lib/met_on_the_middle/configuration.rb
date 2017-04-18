@@ -30,8 +30,8 @@ module MetOnTheMiddle
       @tracker = nil
       @logger = Rails.logger
       @sender = Senders::FileSystem.new(Rails.root.join('log/met_on_the_middle.log'))
-      @flush_interval = 10
-      self.readers = [:RequestCount, :TotalTime, :DatabaseTime]
+      @flush_interval = 60
+      self.readers = [:RequestCount, :TotalTime, :DatabaseTime, :ViewTime]
     end
 
 

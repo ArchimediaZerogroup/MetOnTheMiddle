@@ -8,7 +8,7 @@ sistemi di analisi
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'met_on_the_middle'
+gem 'met_on_the_middle', source: 'http://XXXXXX:XXXXXX@gem.archimedianet.it' 
 ```
 
 And then execute:
@@ -34,9 +34,10 @@ su tale classe
 Nel caso non esistesse un ActiveSupport::Notifications che fa al caso vostro
 registratelo come definito nella 
 [documentazione](http://guides.rubyonrails.org/active_support_instrumentation.html)
- e registrazione quindi la vostra classe per quell'evento
+ e registrate quindi la vostra classe per quell'evento
  
-Ricordardarsi di aggiungere la classe corretta nell'array dei readers
+Ricordardarsi di aggiungere la classe corretta nell'array dei readers nella 
+configurazione dell'inizializer 
 
 ## Development
 

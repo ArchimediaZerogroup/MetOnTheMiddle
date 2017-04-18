@@ -23,7 +23,8 @@ Installare l'inizializzatore con le varie opzioni dell'applicativo
 
 ## Usage
 
-###Per implementare nuove metriche:
+Per implementare nuove metriche:
+
 creare una nuova classe derivata da
 
     MetOnTheMiddle::Readers::Base
@@ -37,7 +38,11 @@ registratelo come definito nella
  e registrate quindi la vostra classe per quell'evento
  
 Ricordardarsi di aggiungere la classe corretta nell'array dei readers nella 
-configurazione dell'inizializer 
+configurazione dell'inizializer
+ 
+ 
+Aggiungere quindi su zabbix all'host interessato il Template Rails preparato.
+Ho estraolato anche il template e posizionato in doc/zbx_export_templates.xml
 
 ## Development
 

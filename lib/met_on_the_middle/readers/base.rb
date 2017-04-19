@@ -45,7 +45,7 @@ module MetOnTheMiddle::Readers
 
     def register_subscription(tracker)
       ActiveSupport::Notifications.subscribe match_subscription do |*args|
-        unless tracker.nil?
+        if not tracker.nil? and not tracker.actual_request.nil?
           event = ActiveSupport::Notifications::Event.new *args
           tracker.add *self.to_key_value(event, request: tracker.actual_request)
         end

@@ -1,21 +1,23 @@
 module MetOnTheMiddle
-  class Collector < Hash
+  class Collector
 
     MAX_QUEUE_SIZE_AUTOCLEAR = 100
-    attr_accessor :sender
+    attr_accessor :sender, :data
+
+    delegate :clear, :size, :empty?, to: :data
 
     def initialize(sender)
       self.sender = sender
-      super(Request.new)
+      @data = Hash.new
     end
 
     def add(request)
-      self[request.time]=request
+      @data[request.time]=request
     end
 
 
     def submit
-      Marshal.load(Marshal.dump(self)).each do |k, v|
+      Marshal.load(Marshal.dump(@data)).each do |k, v|
         self.sender.write(v)
       end
       self.clear

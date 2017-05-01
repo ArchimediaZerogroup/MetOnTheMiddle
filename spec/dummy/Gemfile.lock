@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    met_on_the_middle (0.1.4)
+    met_on_the_middle (0.1.5)
       zabbix_protocol (~> 0.1.5)
 
 GEM

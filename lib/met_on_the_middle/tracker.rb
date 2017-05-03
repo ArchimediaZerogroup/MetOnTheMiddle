@@ -29,7 +29,7 @@ module MetOnTheMiddle
 
     # primary collector object used by this tracker
     def collector
-      @collector ||= Collector.new(@config.sender)
+      @collector ||= MetOnTheMiddle::Collector.new(@config.sender)
     end
 
 

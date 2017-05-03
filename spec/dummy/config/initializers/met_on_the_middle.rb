@@ -21,16 +21,18 @@ MetOnTheMiddle.configure do |cfg|
   # Definisce la classe da utilizzare per spedire/registrazione le informazioni
   # Default a MetOnTheMiddle::Senders::FileSystem configurato per scrivere
   # in un file dentro alla cartella log dell'applicativo Rails
-  #cfg.sender =  MetOnTheMiddle::Senders::FileSystem.new(Rails.root.join('log/met_on_the_middle.log'))
+  cfg.sender =  MetOnTheMiddle::Senders::FileSystem.new(Rails.root.join('log/met_on_the_middle.log'))
 
   ##
   # Configurazione per Zabbix
   #
+=begin
    cfg.sender = MetOnTheMiddle::Senders::Zabbix.new(
        server_host: 'zabbixapp.zerogroup.it',
        port: 10051,
        identify_host: 'limos.archimedianet.it'
    )
+=end
 
 
 end

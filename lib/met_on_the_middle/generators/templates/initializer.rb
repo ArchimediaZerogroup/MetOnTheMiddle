@@ -32,6 +32,9 @@ MetOnTheMiddle.configure do |cfg|
   #   identify_host:'nome.mio.host'
   # )
 
+  ##
+  # Configurazione per definire in quali enviroments montare il middleware
+  # cfg.mounting_enviroments = [:production]
 
 
 

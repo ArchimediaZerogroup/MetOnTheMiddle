@@ -7,7 +7,15 @@ module MetOnTheMiddle
     end
 
     initializer "met_on_the_middle.append_root_middleware" do |app|
-      app.middleware.insert_before(Rack::Sendfile, 'MetOnTheMiddle::RootMiddleware')
+      if MetOnTheMiddle.configuration.mounting_enviroments.include?(Rails.env.to_sym)
+        app.middleware.insert_before(Rack::Sendfile, 'MetOnTheMiddle::RootMiddleware')
+      else
+        Rails.logger.info {
+          "MetOnTheMiddle::RootMiddleware non installato
+           per configurazione dell'enviroment: #{Rails.env.to_sym.inspect}->
+           #{MetOnTheMiddle.configuration.mounting_enviroments.inspect}"
+        }
+      end
     end
 
 

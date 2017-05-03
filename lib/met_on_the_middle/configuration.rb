@@ -14,6 +14,11 @@ module MetOnTheMiddle
     attr_accessor :flush_interval
 
     ##
+    # Enviroments dove installare il middleware
+    # default a sola produzione
+    attr_accessor :mounting_enviroments
+
+    ##
     # Definisce la classe da utilizzare per spedire/registrazione le informazioni
     # Default a MetOnTheMiddle::Senders::FileSystem configurato per scrivere
     # in un file dentro alla cartella log dell'applicativo Rails
@@ -31,6 +36,7 @@ module MetOnTheMiddle
       @logger = Rails.logger
       @sender = Senders::FileSystem.new(Rails.root.join('log/met_on_the_middle.log'))
       @flush_interval = 60
+      @mounting_enviroments = [:production]
       self.readers = [:RequestCount, :TotalTime, :DatabaseTime, :ViewTime]
     end
 

@@ -7,6 +7,19 @@ module MetOnTheMiddle
     def initialize(app)
       @app = app
 
+      generate_tracker
+
+      if defined?(PhusionPassenger)
+        PhusionPassenger.on_event(:starting_worker_process) do |forked|
+          if forked
+            generate_tracker
+          end
+        end
+      end
+
+    end
+
+    def generate_tracker
       @tracker = Tracker.new(MetOnTheMiddle.configuration)
       @tracker.start!
 
@@ -16,7 +29,6 @@ module MetOnTheMiddle
       unless File.basename($0) == 'rake'
         register_subscriptions
       end
-
     end
 
     ##

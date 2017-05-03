@@ -45,5 +45,5 @@ group :development do
   gem 'spring'
 end
 
-
+gem 'passenger'
 gem 'met_on_the_middle', path: '../../../met_on_the_middle'

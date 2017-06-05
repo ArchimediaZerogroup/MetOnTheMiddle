@@ -1,14 +1,16 @@
 # MetOnTheMiddle
 
-Gemma per l'estrapolazione di dati da inviare poi a vari 
-sistemi di analisi
+[![Gem Version](https://badge.fury.io/rb/met_on_the_middle.png)](https://badge.fury.io/rb/met_on_the_middle)
+
+Gemma per l'estrapolazione di dati da inviare poi a sistemi di analisi terzi.
+Nel nostro caso specifico è stato utilizzato il sistema di monitoraggio [Zabbix](http://www.zabbix.com/)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'met_on_the_middle', source: 'http://XXXXXX:XXXXXX@gem.archimedianet.it' 
+gem 'met_on_the_middle' 
 ```
 
 And then execute:
@@ -21,7 +23,7 @@ Installare l'inizializzatore con le varie opzioni dell'applicativo
       
 
 
-## Usage
+## Usage with Zabbix
 
 Per implementare nuove metriche:
 
@@ -41,12 +43,6 @@ Ricordardarsi di aggiungere la classe corretta nell'array dei readers nella
 configurazione dell'inizializer
  
  
-Aggiungere quindi su zabbix all'host interessato il Template Rails preparato.
+Aggiungere quindi su Zabbix all'host interessato il Template Rails preparato.
 Ho estraolato anche il template e posizionato in doc/zbx_export_templates.xml
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
